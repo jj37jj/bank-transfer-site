@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bank Online - Przelew</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2c2c2c;
+      color: #ffffff;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .btn-secondary {
+      background-color: #444;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="formPage">
+    <h1>Przelew bankowy</h1>
+    <form id="transferForm">
+      <label>Odbiorca:</label>
+      <input type="text" value="Komenda Policji Oddział 6, Poznań" disabled/>
+
+      <label>Nr konta odbiorcy:</label>
+      <input type="text" value="12 3456 7890 1234 5678 9012 3456" disabled/>
+
+      <label>Nadawca:</label>
+      <input type="text" value="Sylwester Dzik" disabled/>
+
+      <label>Nr konta nadawcy:</label>
+      <input type="text" value="98 7654 3210 9876 5432 1098 7654" disabled/>
+
+      <label>Kwota przelewu (PLN):</label>
+      <input type="number" placeholder="Wpisz kwotę" required/>
+
+      <button type="submit">Zapłać</button>
+    </form>
+  </div>
+
+  <div class="container hidden" id="confirmationPage">
+    <h1>Dziękujemy za wpłatę</h1>
+    <button onclick="goBack()">Kontynuuj</button>
+    <button class="btn-secondary" onclick="logout()">Wyloguj się</button>
+  </div>
+
+  <script>
+    const form = document.getElementById('transferForm');
+    const formPage = document.getElementById('formPage');
+    const confirmationPage = document.getElementById('confirmationPage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      formPage.classList.add('hidden');
+      confirmationPage.classList.remove('hidden');
+    });
+
+    function goBack() {
+      formPage.classList.remove('hidden');
+      confirmationPage.classList.add('hidden');
+    }
+
+    function logout() {
+      alert("Zostałeś wylogowany.");
+      window.location.reload();
+    }
+  </script>
+</body>
+</html>
